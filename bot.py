@@ -1,20 +1,15 @@
 import os
 import telebot
+from flask import Flask, request
+from google.oauth2.service_account import Credentials
+import gspread
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+SPREADSHEET_URL = os.getenv("SPREADSHEET_URL")
+DRIVE_FOLDER_ID = os.getenv("DRIVE_FOLDER_ID")
 
 if not BOT_TOKEN:
-    raise ValueError("BOT_TOKEN not found in environment variables")
-
-bot = telebot.TeleBot(BOT_TOKEN)
-
-print("Bot started...")
-bot.infinity_polling()
-
-# ================== НАСТРОЙКИ ==================
-BOT_TOKEN = os.environ.get("8218652615:AAGbMevFS0bAI8-4qse7wvC3VA7579FoPOY")
-SPREADSHEET_URL = os.environ.get("https://docs.google.com/spreadsheets/d/1aYHrf33oCo8aPKwsrrzY7YX3k3Pk5vjyHeJ0axidYg8/edit?gid=0#gid=0")
-DRIVE_FOLDER_ID = os.environ.get("1AAV1OPg44i27J7y2_W2XW8k4bXGfJ3pH")
+    raise ValueError("BOT_TOKEN not found")
 
 bot = telebot.TeleBot(BOT_TOKEN)
 app = Flask(__name__)
