@@ -1,12 +1,15 @@
 import os
 import telebot
-from flask import Flask, request
-import gspread
-from google.oauth2.service_account import Credentials
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaIoBaseUpload
-import datetime
-import io
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+if not BOT_TOKEN:
+    raise ValueError("BOT_TOKEN not found in environment variables")
+
+bot = telebot.TeleBot(BOT_TOKEN)
+
+print("Bot started...")
+bot.infinity_polling()
 
 # ================== НАСТРОЙКИ ==================
 BOT_TOKEN = os.environ.get("8218652615:AAGbMevFS0bAI8-4qse7wvC3VA7579FoPOY")
