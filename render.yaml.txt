@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: expense-bot
+    env: python
+    buildCommand: ""
+    startCommand: "python bot.py"
